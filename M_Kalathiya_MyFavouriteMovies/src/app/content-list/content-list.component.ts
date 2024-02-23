@@ -1,20 +1,34 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Content } from '../helper-files/content-interface';
+import { ContentCardComponent } from '../content-card/content-card.component';
+import { FilterContentPipe } from '../filter-content.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-content-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ContentCardComponent, FilterContentPipe, FormsModule],
   templateUrl: './content-list.component.html',
   styleUrl: './content-list.component.scss'
 })
 export class ContentListComponent implements OnInit {
-  displayContentInfo(contentItem: Content) {
+  DisplayContentInformation(contentItem: Content) {
     console.log(`ID: ${contentItem.id} and Title: ${contentItem.title}`);
     }
   @Input () contentItems: Content[] = [];
 
+  searchTitle: string = '';
+  contentExists: boolean = false;
+  message: string = '';  
+  selectedTitle: string | null = null;
+
+  checkContentExists() {
+    const foundItem = this.contentItems.find(item => item.title.toLowerCase() === this.searchTitle.toLowerCase());
+    this.contentExists = !!foundItem;
+    this.message = foundItem ? 'Content item exists.' : 'Content item does not exist.';
+    this.selectedTitle = foundItem ? foundItem.title : null;
+  }
   ngOnInit(): void {
     this.contentItems =[
       {
@@ -59,9 +73,27 @@ export class ContentListComponent implements OnInit {
         description: "A skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: the inception of an idea into the mind of a C-level executive.",
         creator: "Christopher Nolan",
         imgURL: "https://2.bp.blogspot.com/-xFYEth1IzNg/T7aRDDExXfI/AAAAAAAABxs/UUKfDL0Tgw0/s1600/inception-poster.jpg",
-        type: "Sci-Fi",
+        type: "Fight",
         tags: ["Mind-Bending", "Thriller"]
-      }
+      },
+      {
+        id: 5,
+        title: "Interstellar",
+        description: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+        creator: "Christopher Nolan",
+        imgURL: "https://image.tmdb.org/t/p/original/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+        type: "Action",
+        tags: ["Space", "Drama"]
+      },
+        {
+          id: 6,
+          title: "The Shawshank Redemption",
+          description: "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+          creator: "Frank Darabont",
+          imgURL: "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
+          type: "",
+          tags: ["Prison", "Redemption"]
+        }
     ];
   }
 }
