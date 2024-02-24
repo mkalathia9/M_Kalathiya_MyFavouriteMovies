@@ -4,11 +4,12 @@ import { Content } from '../helper-files/content-interface';
 import { ContentCardComponent } from '../content-card/content-card.component';
 import { FilterContentPipe } from '../filter-content.pipe';
 import { FormsModule } from '@angular/forms';
+import { HoverAffectDirective } from '../hover-affect.directive';
 
 @Component({
   selector: 'app-content-list',
-  standalone: true,
-  imports: [CommonModule, ContentCardComponent, FilterContentPipe, FormsModule],
+  standalone: true, 
+  imports: [CommonModule, ContentCardComponent, FilterContentPipe, FormsModule, HoverAffectDirective],
   templateUrl: './content-list.component.html',
   styleUrl: './content-list.component.scss'
 })
@@ -81,7 +82,7 @@ export class ContentListComponent implements OnInit {
         title: "Interstellar",
         description: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
         creator: "Christopher Nolan",
-        imgURL: "https://image.tmdb.org/t/p/original/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+        imgURL:"",
         type: "Action",
         tags: ["Space", "Drama"]
       },
