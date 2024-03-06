@@ -5,11 +5,12 @@ import { ContentCardComponent } from '../content-card/content-card.component';
 import { FilterContentPipe } from '../filter-content.pipe';
 import { FormsModule } from '@angular/forms';
 import { HoverAffectDirective } from '../hover-affect.directive';
+import { CreateContentComponent } from '../create-content/create-content.component';
 
 @Component({
   selector: 'app-content-list',
-  standalone: true, 
-  imports: [CommonModule, ContentCardComponent, FilterContentPipe, FormsModule, HoverAffectDirective],
+  standalone: true,
+  imports: [CommonModule, ContentCardComponent, FilterContentPipe, FormsModule, HoverAffectDirective, CreateContentComponent],
   templateUrl: './content-list.component.html',
   styleUrl: './content-list.component.scss'
 })
@@ -97,4 +98,7 @@ export class ContentListComponent implements OnInit {
         }
     ];
   }
+  onContentCreated(newContent: any) {
+    this.contentItems.push({ ...newContent });
+}
 }

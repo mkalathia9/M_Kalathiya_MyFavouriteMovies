@@ -1,17 +1,15 @@
-<input type="text" [(ngModel)]="searchTitle" placeholder="Enter title">
-<button (click)="checkContentExists()">Check Movie Existence</button>
 
-<p [ngStyle]="{'color': contentExists ? 'green' : 'red'}">{{ message }}</p>
+<div>
+  <input [(ngModel)]="searchTitle" placeholder="Enter Content Title" />
+  <button (click)="checkContentExists()">Search</button>
+  <div [ngStyle]="{'color' : contentExists ? 'green' : 'red'}">
+    {{ message }}
+  </div>
+</div>
 
-<section>
-<h1>Empty</h1>
-<app-content-card *ngFor="let contentItem of contentItems | filterContent: ''" [contentItem]="contentItem"></app-content-card>
-</section>
-<section>
-<h1>Action</h1>
-<app-content-card *ngFor="let contentItem of contentItems | filterContent: 'Action'" [contentItem]="contentItem"></app-content-card>
-</section>
-<section>
-<h1>Fight</h1>
-<app-content-card *ngFor="let contentItem of contentItems | filterContent: 'Fight'" [contentItem]="contentItem"></app-content-card>
-</section>
+<app-create-content (createContent)="onContentCreated($event)"></app-create-content>
+<div>
+  <div *ngFor="let content of contentItems">
+    <app-content-card [contentItem]="content"></app-content-card>
+  </div>
+</div>
