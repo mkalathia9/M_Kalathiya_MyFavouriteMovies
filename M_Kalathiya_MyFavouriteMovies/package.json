@@ -1,6 +1,6 @@
 {
   "name": "m-kalathiya-my-favourite-movies",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,8 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "generatecomponent": "ng generate component",
-  "generatepipe": "ng generate pipe",
-  "generatedirective": "ng generate directive",
+    "generatepipe": "ng generate pipe",
+    "generatedirective": "ng generate directive",
     "serve:ssr:M_Kalathiya_MyFavouriteMovies": "node dist/m-kalathiya-my-favourite-movies/server/server.mjs"
   },
   "private": true,
@@ -27,7 +27,7 @@
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.3"
+    "zone.js": "^0.14.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.2.0",

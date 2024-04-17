@@ -1,0 +1,15 @@
+
+<div>
+  <input [(ngModel)]="searchTitle" placeholder="Enter Content Title" />
+  <button (click)="checkContentExists()">Search</button>
+  <div [ngStyle]="{'color' : contentExists ? 'green' : 'red'}">
+    {{ message }}
+  </div>
+</div>
+
+<app-create-content (createContent)="onContentCreated($event)"></app-create-content>
+<div>
+  <div *ngFor="let content of contentItems">
+    <app-content-card [contentItem]="content"></app-content-card>
+  </div>
+</div>
