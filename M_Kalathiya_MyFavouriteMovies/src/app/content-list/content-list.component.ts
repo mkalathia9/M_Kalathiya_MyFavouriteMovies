@@ -6,15 +6,20 @@ import { FilterContentPipe } from '../filter-content.pipe';
 import { FormsModule } from '@angular/forms';
 import { HoverAffectDirective } from '../hover-affect.directive';
 import { CreateContentComponent } from '../create-content/create-content.component';
+import { ModifyContentComponent } from "../modify-content/modify-content.component";
 
 @Component({
-  selector: 'app-content-list',
-  standalone: true,
-  imports: [CommonModule, ContentCardComponent, FilterContentPipe, FormsModule, HoverAffectDirective, CreateContentComponent],
-  templateUrl: './content-list.component.html',
-  styleUrl: './content-list.component.scss'
+    selector: 'app-content-list',
+    standalone: true,
+    templateUrl: './content-list.component.html',
+    styleUrl: './content-list.component.scss',
+    imports: [CommonModule, ContentCardComponent, FilterContentPipe, FormsModule, HoverAffectDirective, CreateContentComponent, ModifyContentComponent]
 })
 export class ContentListComponent implements OnInit {
+onContentAdded($event: Event) {
+throw new Error('Method not implemented.');
+}
+items: any;
   DisplayContentInformation(contentItem: Content) {
     console.log(`ID: ${contentItem.id} and Title: ${contentItem.title}`);
     }
@@ -25,6 +30,10 @@ export class ContentListComponent implements OnInit {
   message: string = '';  
   selectedTitle: string | null = null;
 
+  
+  id:any;
+  selectedContent?: Content;
+  
   checkContentExists() {
     const foundItem = this.contentItems.find(item => item.title.toLowerCase() === this.searchTitle.toLowerCase());
     this.contentExists = !!foundItem;
